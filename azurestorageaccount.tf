@@ -105,7 +105,7 @@ resource "azurerm_virtual_machine" "vm" {
 }
 
 data "azurerm_public_ip" "ip" {
-  name                = azurerm_private_ip.publicip.name
+  name                = azurerm_public_ip.publicip.name
   resource_group_name = azurerm_virtual_machine.vm.resource_group_name
   depends_on          = ["azurerm_virtual_machine.vm"]
 }
