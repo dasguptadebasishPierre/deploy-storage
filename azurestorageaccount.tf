@@ -30,7 +30,7 @@ resource "azurerm_public_ip" "publicip" {
   name                = "${var.prefix}TFPublicIP"
   location            = var.location
   resource_group_name = azurerm_resource_group.rg.name
-  allocation_method   = "Dynamic"
+  allocation_method   = "Static"
   tags                = var.tags
 }
 
