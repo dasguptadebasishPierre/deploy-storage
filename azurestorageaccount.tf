@@ -1,22 +1,35 @@
-resource "azurerm_resource_group" "rg" {
-  name     = "${var.prefix}TFRG"
-  location = var.location
-  tags     = var.tags
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
+variable "location" {}
+
+variable "admin_username" {
+  type        = string
+  description = "Administrator user name for virtual machine"
 }
 
-# Create virtual network
-resource "azurerm_virtual_network" "vnet" {
-  name                = "${var.prefix}TFVnet"
-  address_space       = ["10.0.0.0/16"]
-  location            = var.location
-  resource_group_name = azurerm_resource_group.rg.name
-  tags                = var.tags
+variable "admin_password" {
+  type        = string
+  description = "Password must meet Azure complexity requirements"
 }
 
-# Create subnet
-resource "azurerm_subnet" "subnet" {
-  name                 = "${var.prefix}TFSubnet"
-  resource_group_name  = azurerm_resource_group.rg.name
-  virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes     = ["10.0.1.0/24"]
+variable "prefix" {
+  type    = string
+  default = "my"
+}
+
+variable "tags" {
+  type = map
+
+  default = {
+    Environment = "Terraform GS"
+    Dept        = "Engineering"
+  }
+}
+
+variable "sku" {
+  default = {
+    westus2 = "16.04-LTS"
+    eastus  = "18.04-LTS"
+  }
 }
