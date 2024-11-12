@@ -3,3 +3,5 @@
 
 location       = "westus2"
 prefix         = "tf"
+admin_username = "linxadmin"
+admin_password = "Pierre2@22Admin"
