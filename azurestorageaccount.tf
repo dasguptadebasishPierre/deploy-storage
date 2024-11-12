@@ -26,13 +26,13 @@ resource "azurerm_subnet" "subnet" {
 }
 
 # Create public IP
-resource "azurerm_public_ip" "publicip" {
-  name                = "${var.prefix}TFPublicIP"
-  location            = var.location
-  resource_group_name = azurerm_resource_group.rg.name
-  allocation_method   = "Static"
-  tags                = var.tags
-}
+#resource "azurerm_public_ip" "publicip" {
+ # name                = "${var.prefix}TFPublicIP"
+  #location            = var.location
+  #resource_group_name = azurerm_resource_group.rg.name
+  #allocation_method   = "Static"
+  #tags                = var.tags
+#}
 
 # Create Network Security Group and rule
 resource "azurerm_network_security_group" "nsg" {
