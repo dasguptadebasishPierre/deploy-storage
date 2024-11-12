@@ -8,14 +8,14 @@ terraform {
     azurerm = {
       source  = "hashicorp/azurerm"
       version = ">= 3.0.2"
-    }
+      }
     }
 cloud {
    organization = "hashicorpcapri"
    workspaces {
     name = "infradeploy"
   }
-}
+ }
 }
 
 provider "azurerm" {
