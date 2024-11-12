@@ -64,7 +64,7 @@ resource "azurerm_network_interface" "nic" {
   ip_configuration {
     name                          = "${var.prefix}NICConfg"
     subnet_id                     = azurerm_subnet.subnet.id
-    private_ip_address_allocation = "static"
+    private_ip_address_allocation = "Static"
     public_ip_address_id          = azurerm_public_ip.publicip.id
   }
 }
