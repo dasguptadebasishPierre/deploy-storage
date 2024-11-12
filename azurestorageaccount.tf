@@ -104,11 +104,11 @@ resource "azurerm_virtual_machine" "vm" {
 
 }
 
-data "azurerm_private_ip" "ip" {
-  name                = azurerm_private_ip.privateip.name
-  resource_group_name = azurerm_virtual_machine.vm.resource_group_name
-  depends_on          = ["azurerm_virtual_machine.vm"]
-}
+#data "azurerm_private_ip" "ip" {
+ # name                = azurerm_private_ip.privateip.name
+  #resource_group_name = azurerm_virtual_machine.vm.resource_group_name
+  #depends_on          = ["azurerm_virtual_machine.vm"]
+#}
 
 output "os_sku" {
   value = lookup(var.sku, var.location)
