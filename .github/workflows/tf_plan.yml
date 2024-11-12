@@ -84,4 +84,6 @@ jobs:
       
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      run: terraform plan -input=false
+      id: plan
+      if: github.event_name == 'push'
+      run: terraform plan
