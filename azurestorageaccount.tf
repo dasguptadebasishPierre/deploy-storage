@@ -26,13 +26,13 @@ resource "azurerm_subnet" "subnet" {
 }
 
 # Create public IP
-#resource "azurerm_private_ip" "privateip" {
- # name                = "${var.prefix}TFPublicIP"
-  #location            = var.location
-  #resource_group_name = azurerm_resource_group.rg.name
-  #allocation_method   = "Static"
-  #tags                = var.tags
-#}
+resource "azurerm_public_ip" "public" {
+  name                = "${var.prefix}TFPublicIP"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
+  allocation_method   = "Static"
+  tags                = var.tags
+}
 
 # Create Network Security Group and rule
 resource "azurerm_network_security_group" "nsg" {
@@ -65,7 +65,7 @@ resource "azurerm_network_interface" "nic" {
     name                          = "${var.prefix}NICConfg"
     subnet_id                     = azurerm_subnet.subnet.id
     private_ip_address_allocation = "Static"
-    #public_ip_address_id          = azurerm_public_ip.publicip.id
+    public_ip_address_id          = azurerm_public_ip.publicip.id
   }
 }
 
@@ -104,11 +104,11 @@ resource "azurerm_virtual_machine" "vm" {
 
 }
 
-#data "azurerm_private_ip" "ip" {
- # name                = azurerm_private_ip.privateip.name
-  #resource_group_name = azurerm_virtual_machine.vm.resource_group_name
-  #depends_on          = ["azurerm_virtual_machine.vm"]
-#}
+data "azurerm_public_ip" "ip" {
+  name                = azurerm_private_ip.publicip.name
+  resource_group_name = azurerm_virtual_machine.vm.resource_group_name
+  depends_on          = ["azurerm_virtual_machine.vm"]
+}
 
 output "os_sku" {
   value = lookup(var.sku, var.location)
