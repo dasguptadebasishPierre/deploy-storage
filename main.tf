@@ -13,7 +13,7 @@ terraform {
 cloud {
    organization = "hashicorpcapri"
    workspaces {
-    name = "Rotary"
+    name = "infradeploy"
   }
  }
 }
