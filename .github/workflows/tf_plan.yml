@@ -40,10 +40,10 @@
 name: 'Terraform'
 
 on:
-  #push:
-    #branches: [ "feature-release" ]
-  pull_request:
+  push:
     branches: [ "main" ]
+  #pull_request:
+    #branches: [ "main" ]
 permissions:
   contents: read
 
@@ -88,5 +88,5 @@ jobs:
       run: exit 1
  
     - name: Terraform Apply
-      #if: github.ref == 'refs/heads/main' && github.event_name == 'pull'
+      #if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: terraform apply -auto-approve -input=false
